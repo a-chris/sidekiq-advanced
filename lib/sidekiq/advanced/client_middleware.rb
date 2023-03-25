@@ -21,7 +21,7 @@ module Sidekiq
             job['keep_same_id'] = job_class.advanced_options.keep_same_id
           end
         rescue StandardError => e
-          puts e.message
+          Sidekiq.logger.error("Error in Sidekiq::Advanced::ClientMiddleware: #{e.message}")
         end
 
         yield
